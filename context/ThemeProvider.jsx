@@ -2,7 +2,7 @@
 
 import React, {createContext,useContext, useState, useEffect} from "react";
 
-const ThemeContext = createContext<ThemeContext | undefined>(undefined);
+const ThemeContext = createContext("somthing");
 
 export const ThemeProvider = ({children}) => {
    const [mode, setMode] = useState('');
@@ -11,7 +11,7 @@ export const ThemeProvider = ({children}) => {
    }
    useEffect(() =>{
     handlerThemeChange();
-   },[mode])
+   },[])
 
 
    return (
