@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export const darkMode = 'class';
+export const darkMode = 'className';
 export const content = [
   './pages/**/*.{js,jsx}',
   './components/**/*.{js,jsx}',

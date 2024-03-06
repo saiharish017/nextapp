@@ -4,7 +4,7 @@
 <path d="M14.998 28.0876L10.3792 25.4209L0.999748 41.6666L7.54538 40.996L14.998 28.0876Z" fill="#73488D"/>
 <path d="M21.5879 28.0876L16.969 30.7543L26.3485 47L29.0406 40.996L21.5879 28.0876Z" fill="#73488D"/>
 <path d="M21.5879 28.0876L26.2068 25.4209L35.5862 41.6666L29.0406 40.996L21.5879 28.0876Z" fill="#AA75CB"/>
-<circle cx="18.2856" cy="16.9018" r="16.0419" fill="#DC9E42" stroke="#774700" stroke-width="0.280189"/>
+<circle cx="18.2856" cy="16.9018" r="16.0419" fill="#DC9E42" stroke="#774700" strokeWidth="0.280189"/>
 <circle cx="18.2854" cy="16.9018" r="12.4128" fill="#734C12"/>
 <mask id="mask0_212_7104" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="6" y="5" width="26" height="26">
 <circle cx="18.9481" cy="18.2269" r="12.4417" fill="#C28B37"/>

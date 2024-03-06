@@ -9,8 +9,7 @@ function Layout({children}) {
 
   return (
     <main className={mode}>
-<div className=''>
-        <LsideBar/>
+<div >
         <Navbar/>
         
         {children}
