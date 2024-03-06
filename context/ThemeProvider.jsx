@@ -1,32 +1,15 @@
 "use client"
+import { createContext, useState, useContext} from "react";
 
-import React, {createContext,useContext, useState, useEffect} from "react";
-
-const ThemeContext = createContext("somthing");
-
-export const ThemeProvider = ({children}) => {
-   const [mode, setMode] = useState('');
-   const handlerThemeChange=()=>{
-    setMode(mode === 'dark'? 'light' : 'dark');
-   }
-   useEffect(() =>{
-    handlerThemeChange();
-   },[])
-
-
-   return (
-    <ThemeContext.Provider value={{mode, setMode}}>
+const ThemeContext = createContext("dark")
+export function ThemeWraper({children}){
+let [mode, setMode]=useState("dark")
+return(
+    <ThemeContext.Provider value={{mode,setMode}}>
         {children}
     </ThemeContext.Provider>
 )
-}
-
-export const useTheme = () => {
-    const context = useContext(ThemeContext);
-    if (context === undefined) {
-        throw new Error("useTheme must be used within a ThemeProvider");
-    }else{
-        return context;
-    }
-
-}
+};
+export function useThemeContext(){
+    return useContext(ThemeContext);
+};
