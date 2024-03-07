@@ -6,12 +6,9 @@ import LsideBar from "./LsideBar";
 
 function Navbar() {
   const {mode,setMode}= useThemeContext();
-  const {menubtn, setMenubtn}=useState(false);
  
   return (
     <>
-    
-
 <nav className="bg-white border-gray-200 dark:bg-gray-900 z-10" >
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 z-10">
   <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -71,19 +68,6 @@ function Navbar() {
 <LsideBar/>
 
     </>
-    /* <div className="bg-white dark:bg-black  p-5 flex justify-between ">
-      <div className="flex gap-5">
-        <img src="/assets/images/site-logo.svg" className="w-8" alt="Logo" />
-        <p className=" text-[22px] font-bold  text-zinc-900">FristApp</p>
-      </div>
-      <h1>Mode</h1>
-      <div>
-     <button onClick={()=>mode==="dark"?setMode("light"):setMode("dark")}>
-     <img src={mode === 'dark' ? '/assets/icons/sun.svg' : '/assets/icons/moon.svg'} ></img>
-    </button>
-        <UserButton />
-      </div>
-    </div> */
   );
 }
 
