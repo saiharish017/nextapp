@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export const darkMode = 'className';
+export const darkMode = 'class';
 export const content = [
   './pages/**/*.{js,jsx}',
   './components/**/*.{js,jsx}',
@@ -70,6 +70,22 @@ export const theme = {
       "accordion-down": "accordion-down 0.2s ease-out",
       "accordion-up": "accordion-up 0.2s ease-out",
     },
+  },
+  screens: {
+    'max-2xl': {'max': '1535px'},
+    // => @media (max-width: 1535px) { ... }
+
+    'max-xl': {'max': '1279px'},
+    // => @media (max-width: 1279px) { ... }
+
+    'max-lg': {'max': '1023px'},
+    // => @media (max-width: 1023px) { ... }
+
+    'max-md': {'max': '767px'},
+    // => @media (max-width: 767px) { ... }
+
+    'max-sm': {'max': '639px'},
+    // => @media (max-width: 639px) { ... }
   },
 };
 export const plugins = [require("tailwindcss-animate")];
