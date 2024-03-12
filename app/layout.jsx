@@ -9,15 +9,18 @@ export default function RootLayout({ children }) {
   
 
   return (
-    <ClerkProvider>
+    
+    
      
     <html lang="en"  >
-     
+     <ClerkProvider>
     <ThemeWraper>
     <body >{children}</body>
     </ThemeWraper>
+    </ClerkProvider>
     </html> 
    
-    </ClerkProvider>
+    
+    
   );
 }

@@ -29,7 +29,9 @@ function Layout({children}) {
         <div className='flex justify-between '>
         <LsideBar isOpen={isSidebarOpen}></LsideBar>
         {children}
-        <RsideBar/>
+        <div className=' max-lg:hidden'>
+        <RsideBar />
+        </div>
         </div>
 
         
