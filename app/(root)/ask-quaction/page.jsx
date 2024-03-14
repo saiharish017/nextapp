@@ -1,12 +1,13 @@
 import React from 'react'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { Form } from '@/components/shared/forms'
+import { QuactionForm } from '@/components/shared/forms'
 
 function AskQuaction() {
 
 
   return (
-    <Form></Form>
+    <div className='mt-[100px] w-full p-10'>
+    <QuactionForm></QuactionForm>
+    </div>
   )
 }
 
@@ -341,3 +342,4 @@ export default AskQuaction
         </button>
       </div>
     </form> */}
+    
