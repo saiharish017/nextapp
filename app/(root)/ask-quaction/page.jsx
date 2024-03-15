@@ -1,12 +1,20 @@
 import React from 'react'
 import { QuactionForm } from '@/components/shared/forms'
+import { auth } from '@clerk/nextjs'
+import { redirect } from 'next/navigation';
+import { getUserById } from '@/lib/actions/user.action';
 
-function AskQuaction() {
-
+async function AskQuaction() {
+  //const {userId} = auth();
+  const userId = "clerk_01G6X5F28K88P3JBRKVR52T8NV"
+  if (!userId) redirect('/sign-in');
+  console.log(userId)
+  const mongoUser = await getUserById(userId);
+  console.log(mongoUser)
 
   return (
     <div className='mt-[100px] w-full p-10'>
-    <QuactionForm></QuactionForm>
+    <QuactionForm MongoDbId={JSON.stringify(mongoUser._id)}></QuactionForm>
     </div>
   )
 }

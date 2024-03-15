@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { CreateQuection } from "@/lib/actions/question.action";
 
 // ... in your component
 
@@ -33,18 +34,21 @@ const formSchema = z.object({
 
 })
 
-export function QuactionForm() {
+export function QuactionForm(MongoDbId) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
-      textfeld:"",
+      content:"",
       tags:"",
+      author:MongoDbId,
     },
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values) {
+  async function onSubmit(values) {
+    await CreateQuection(values);
+
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
@@ -72,8 +76,8 @@ export function QuactionForm() {
       }}
 
     }
-  console.log('e.field:', field);           // Inspect the target element
-console.log('e.target.value:', e.target.value);
+ /*  console.log('e.field:', field);           // Inspect the target element
+console.log('e.target.value:', e.target.value); */
   }
 
   return (
@@ -109,7 +113,9 @@ console.log('e.target.value:', e.target.value);
               <Editor
         apiKey="3s16gtp3kxfpmtbtuhao99v1embza4enq20ztfnq9zhibv9y"
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue="<p>This is the initial content of the editor.</p>"
+        onBlur={field.onBlur}
+        onEditorChange={(content)=>field.onChange(content)}
+        initialValue=""
         init={{
           height: 500,
           menubar: false,
@@ -161,7 +167,7 @@ console.log('e.target.value:', e.target.value);
              
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" onClick={()=>onSubmit()}>Submit</Button>
       </form>
     </Form>
   )
