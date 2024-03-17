@@ -5,7 +5,7 @@ import TagButtons from "@/components/shared/TagButtons";
 import { getQuestion } from "@/lib/actions/question.action";
 import { UserButton } from "@clerk/nextjs";
 import { Divide } from "lucide-react";
- 
+
 export default async function Home() {
   const quactions = await getQuestion({})
   const filters=[
@@ -38,7 +38,5 @@ export default async function Home() {
         <Feed  id={quaction._id} title={quaction.title} tag={quaction.tags}></Feed>
       )): <NothingFound />}
     </div>
-    
-    
   )
 }
