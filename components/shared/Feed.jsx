@@ -5,7 +5,7 @@ import ImgPtext from './imgPtext'
 function Feed({id, title, tag}) {
 
   return (
-    <div className='p-10 flex-col flex bg-slate-700 rounded-lg shadow-md my-10 gap-3' key={id}>
+    <div className='p-10 flex-col flex bg-slate-700 rounded-lg shadow-md my-10 gap-3' >
         <h2>{title}</h2>
         <div className='flex gap-3'>
         {tag.map((ta)=>(<TagButtons id={ta._id} name={ta.name} ></TagButtons>))}

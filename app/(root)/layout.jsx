@@ -24,15 +24,16 @@ function Layout({children}) {
 
   return (
     <main className={mode}>
-        <div  >
+        <div className=' bg-white dark:bg-black dark:text-white' >
         <Navbar onMenuClick={toggleSidebar}/>
-        <div className='flex justify-between '>
-        <LsideBar isOpen={isSidebarOpen}></LsideBar>
-        {children}
-        <div className=' max-lg:hidden'>
+        <div className="flex">
+        <LsideBar isOpen={isSidebarOpen} ></LsideBar>
+        <section className="flex min-h-screen flex-1 flex-col  max-md:pb-14 sm:px-5 md:px-14">
+          <div className="mx-auto w-full max-w-5xl">{children}</div>
+        </section>
         <RsideBar />
-        </div>
-        </div>
+        
+      </div>
 
         
         

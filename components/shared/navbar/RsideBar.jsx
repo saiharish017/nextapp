@@ -17,7 +17,7 @@ function RsideBar() {
        
     ];
   return (
-    <div className='w-[300px] bg-white dark:bg-slate-950  h-full p-5  overflow-y-scroll scrollbar-thin'>
+    <div className=' bg-white dark:bg-slate-950  custom-scrollbar sticky inset-y-0 right-0 flex h-screen w-[300px] shrink-0 flex-col  overflow-y-auto border-l p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden'>
         <h1 className='font-bold  dark:text-white text-xl'>Top Questions</h1>
         <div className='flex flex-col gap-4 mt-3 '>
         { questions.map((question) => (

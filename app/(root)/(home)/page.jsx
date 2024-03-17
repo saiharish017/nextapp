@@ -20,7 +20,7 @@ export default async function Home() {
 
   ] */
   return (
-    <div className="h-screen bg-white p-[80px] dark:bg-black dark:text-white w-full">
+    <div className=" bg-white p-[80px] dark:bg-black dark:text-white w-full">
     <div className="flex justify-between">
      <h1 className="text-[35px]">All Questions</h1>
      <button className=" px-2 py-3 bg-blue-500 rounded-sm">
