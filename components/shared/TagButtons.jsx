@@ -2,9 +2,12 @@ import React from 'react'
 
 function TagButtons({id,name}
 ) {
+  console.log("tagbtn"+id)
   return (
-    <div><button key={id} className="px-4 py-1 bg-slate-500  rounded-lg text-gray-300 ">
-    {name}</button></div>
+    
+      <button key={id} className="px-4 py-1 bg-slate-500  rounded-lg text-gray-300 ">
+    {name}</button>
+    
   )
 }
 

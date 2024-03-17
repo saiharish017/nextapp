@@ -7,7 +7,9 @@ function Feed({id, title, tag}) {
   return (
     <div className='p-10 flex-col flex bg-slate-700 rounded-lg shadow-md my-10 gap-3' key={id}>
         <h2>{title}</h2>
-        <TagButtons id={id} name={tag} ></TagButtons>
+        <div className='flex gap-3'>
+        {tag.map((ta)=>(<TagButtons id={ta._id} name={ta.name} ></TagButtons>))}
+        </div>
         <div className='flex justify-between'>
         <ImgPtext Img="assets/icons/avatar.svg"  alt="avatar" text="saiharish"></ImgPtext>
         <div className='flex gap-4 items-center'>

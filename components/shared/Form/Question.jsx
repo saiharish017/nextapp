@@ -2,9 +2,9 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -15,44 +15,31 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { CreateQuection } from "@/lib/actions/question.action";
-
-// ... in your component
-
+import { Input } from "@/components/ui/input";
+import { CreateQuestion } from "@/lib/actions/question.action";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 const formSchema = z.object({
   title: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  textfeld: z.string().min(50,{
-    message: "min 50 chr needed",
-  }).max(500 ,{
-    message: "max 500 chr",
-  }),
-  tag: z.string(),
-
+  content: z.string().min(20,{message:"gfgfgfgfgfgfgfgfgf"}),
+  tags: z.array(z.string()),
 })
 
-export function QuactionForm(MongoDbId) {
+export function ProfileForm({type, MongoDbId}) {
+  
+   // const pathname = usePathname();
+  // 1. Define your form.
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       content:"",
-      tags:"",
-      author:MongoDbId,
+      tags:[],
     },
   })
- 
-  // 2. Define a submit handler.
-  async function onSubmit(values) {
-    await CreateQuection(values);
-
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
   const editorRef = useRef(null);
   const handleInputKeyDown= (e,field)=>{
     
@@ -75,40 +62,53 @@ export function QuactionForm(MongoDbId) {
           form.trigger();
       }}
 
-    }
- /*  console.log('e.field:', field);           // Inspect the target element
-console.log('e.target.value:', e.target.value); */
-  }
+    }}
+    const handleTagRemove = (tag, field) => {
+        const newTags = field.value.filter((t) => t !== tag); // Filter out the tag that needs to be removed
+        form.setValue("tags", newTags); // update the tags[] with the newTags array value
+      };
+    
 
+  // 2. Define a submit handler.
+  async function onSubmit(values) {
+    console.log("mongodeId"+MongoDbId)
+    await CreateQuestion({
+        
+        title: values.title,
+        content: values.content,
+        tags: values.tags,
+        author: JSON.parse(MongoDbId),
+         // path: pathname,
+    });
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    
+  }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
-        
           control={form.control}
           name="title"
           render={({ field }) => (
-           
-            <FormItem >
-              <FormLabel>Question Title* </FormLabel>
+            <FormItem>
+              <FormLabel>Question Title*</FormLabel>
               <FormControl>
-                <Input placeholder="Question" {...field} className="h-[60px] text-yellow-50" />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormDescription>
-              Be specific and imagine you’re asking a question to another person.
-              </FormDescription>
+              Be specific and imagine you’re asking a question to another person.              </FormDescription>
               <FormMessage />
             </FormItem>
-             
           )}
         />
          <FormField
           control={form.control}
-          name="textfeld"
+          name="content"
           render={({ field }) => (
            
             <FormItem>
-              <FormLabel>TextFeld* </FormLabel>
+              <FormLabel>Content* </FormLabel>
               <FormControl>
               <Editor
         apiKey="3s16gtp3kxfpmtbtuhao99v1embza4enq20ztfnq9zhibv9y"
@@ -140,7 +140,7 @@ console.log('e.target.value:', e.target.value); */
              
           )}
         />
-         <FormField
+        <FormField
           control={form.control}
           name="tags"
           render={({ field }) => (
@@ -150,12 +150,34 @@ console.log('e.target.value:', e.target.value); */
               <FormControl>
                 <>
                 <Input placeholder="Tags" onKeyDown={(e)=>handleInputKeyDown(e,field)} className="h-[60px] text-yellow-50" />
-                {field.value.length> 0 && ( 
-                  <div className="">
-                    {field.value.map((tag)=>
-                    <button className="px-4 py-2 bg-slate-600 rounded-lg text-white" key ={tag}>{tag}</button>)}
-                  </div>
-                )}</>
+                {field.value.length > 0 && (
+                    <div className="flex-start mt-2.5 gap-2.5">
+                      {field.value.map((tag) => (
+                        <Badge
+                          key={tag}
+                          onClick={() =>
+                            type !== "Edit"
+                              ? handleTagRemove(tag, field)
+                              : () => {}
+                          }
+                          className="flex-center subtle-medium background-light800_dark300 text-light400_light500 gap-2 rounded-md border-none px-4 py-2 capitalize"
+                        >
+                          {tag}
+                          {type !== "Edit" && (
+                            <Image
+                              src="/assets/icons/close.svg"
+                              alt="Close icon"
+                              width={12}
+                              height={12}
+                              className="cursor-pointer object-contain invert-0 dark:invert"
+                            />
+                          )}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                 
+              </>
               </FormControl>
               <FormDescription>
               Be specific and imagine you’re asking a question to another person.
@@ -167,7 +189,7 @@ console.log('e.target.value:', e.target.value); */
              
           )}
         />
-        <Button type="submit" onClick={()=>onSubmit()}>Submit</Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   )
