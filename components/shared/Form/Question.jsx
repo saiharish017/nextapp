@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { CreateQuestion } from "@/lib/actions/question.action";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -29,6 +30,9 @@ const formSchema = z.object({
 })
 
 export function ProfileForm({type, MongoDbId}) {
+  
+  const router = useRouter()
+  const pathname = usePathname()
   
    // const pathname = usePathname();
   // 1. Define your form.
@@ -78,8 +82,10 @@ export function ProfileForm({type, MongoDbId}) {
         content: values.content,
         tags: values.tags,
         author: JSON.parse(MongoDbId),
-         // path: pathname,
+        path: pathname,
+         
     });
+    router.push('/')
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     
