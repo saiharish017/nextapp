@@ -14,11 +14,7 @@ export default async function Home() {
     {id:3, filter: "Frequent"},
     {id:4, filter: "Unanswered"}
   ]
- /*  const quactions=[
-    {id:1, quaction: "Best practices for data fetching in a Next.js application with Serverless functions?", tag:"somthing"},
-    {id:2, quaction: "Best practices for data fetching in a Next.js application with Serverless functions?", tag:"somthing"}
 
-  ] */
   return (
     <div className=" bg-white p-[80px] dark:bg-black dark:text-white w-full">
     <div className="flex justify-between">
